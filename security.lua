@@ -18,9 +18,9 @@ keypad.setKey(customButtons)
 
 function correct()
   keypad.setDisplay("Open")
-  door.close()
-  os.sleep(3)
   door.open()
+  os.sleep(3)
+  door.close()
   display = ""
   entered = {}
 end
@@ -41,7 +41,7 @@ function updateScreen()
 end
 
 function checkCode(a,b)
-  
+
   if ser.serialize(a) == ser.serialize(b) then
     correct()
   else
@@ -54,25 +54,23 @@ code = {"1","2","3","4"}
 entered = {}
 display = ""
 
-door.open()
-
 while true do
   updateScreen()
-    
+
   e,_, button, label, value = event.pullMultiple("keypad","redstone_changed")
 
   if e == "keypad" then
     event.cancel(timeout)
-  
+
     if label == "#" then
       checkCode(entered,code)
     end
-  
+
     if label == "*" then
       display = ""
       entered = {}
     end
-  
+
     if label ~= "#" and label ~= "*" then
       table.insert(entered, label)
       display = ""
