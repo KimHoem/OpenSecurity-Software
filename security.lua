@@ -54,7 +54,7 @@ code = {"1","2","3","4"}
 entered = {}
 display = ""
 
-door.close()
+door.close() 
 
 while true do
   updateScreen()
